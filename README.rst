@@ -1,10 +1,16 @@
 Fork of nanvel/tornado-botocore
 ===============================
 
+STILL NOT OK . DON NOT USE IT !
+--------------------------------
+
 See : https://github.com/nanvel/tornado-botocore
 
 This fork because this package dependance of botocore is too old (1.2.0)
-Trying to have the same package with dependency on botocore >= 1.5.29
+
+Trying to have the same package without botocore dependency,
+including it directly in source tree (botocore-1.2.0)
+
 Waiting of answers on opened issue : https://github.com/nanvel/tornado-botocore/issues/8
 
 Tornado botocore
