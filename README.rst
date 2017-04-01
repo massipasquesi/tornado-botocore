@@ -1,17 +1,18 @@
 Fork of nanvel/tornado-botocore
 ===============================
 
-STILL NOT OK . DON NOT USE IT !
---------------------------------
-
 See : https://github.com/nanvel/tornado-botocore
 
 This fork because this package dependance of botocore is too old (1.2.0)
+I had conflicts with others applications that use botocore with more recent version
+like aws-cli and boto3
 
-Trying to have the same package without botocore dependency,
-including it directly in source tree (botocore-1.2.0)
+I include hardely botocore 1.2.0 package in this package
+Added tornado-botocore folder in PYTHON_PATH dinamically and use this versionof botocore embedded
 
 Waiting of answers on opened issue : https://github.com/nanvel/tornado-botocore/issues/8
+
+This solution is temporary! Best is to make run properly tornado-botocore with more recent version of botocore !
 
 Tornado botocore
 ================
@@ -28,7 +29,6 @@ Installation
 ------------
 
 Requirements:
-    - `botocore <https://github.com/boto/botocore>`__ (>= 1.5.29) (Testing more recent versions of botocore in this fork)
     - `tornado <https://github.com/tornadoweb/tornado>`__
 
 Versions:
@@ -48,12 +48,12 @@ A Simple EC2 Example from `botocore docs <http://botocore.readthedocs.org/en/lat
 
 .. code-block:: python
 
-    import botocore.session
+    import botocore120.session
 
 
     if __name__ == '__main__':
-        session = botocore.session.get_session()
-        client = session.create_client('ec2', region_name='us-west-2')
+        session = botocore120.session.get_session()
+        client = session.create_client('ec2', region_name='eu-west-1')
 
         for reservation in client.describe_instances()['Reservations']:
             for instance in reservation['Instances']:
@@ -171,18 +171,6 @@ Testing: endpoint_url argument is useful for testing (use DynamoDBLocal).
 Contribute
 ----------
 
-If you want to contribute to this project, please perform the following steps:
+If you want to contribute to this project, follow instruction on original project page :
 
-.. code-block:: bash
-
-    # Fork this repository
-    # Clone your fork
-    $ virtualenv .env --no-site-packages
-    $ source .env/bin/activate
-    $ pip install -r requirements.txt
-
-    $ git co -b feature_branch master
-    # Implement your feature
-    $ git add . && git commit
-    $ git push -u origin feature_branch
-    # Send us a pull request for your feature branch
+https://github.com/nanvel/tornado-botocore

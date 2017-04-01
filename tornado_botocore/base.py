@@ -1,3 +1,5 @@
+#from __future__ import absolute_import
+
 import logging
 
 from functools import partial
@@ -6,10 +8,10 @@ from urlparse import urlparse
 from requests.utils import get_environ_proxies
 from tornado.httpclient import HTTPClient, AsyncHTTPClient, HTTPRequest, HTTPError
 
-import botocore.credentials
-import botocore.parsers
-import botocore.response
-import botocore.session
+import botocore120.credentials
+import botocore120.parsers
+import botocore120.response
+import botocore120.session
 
 
 logger = logging.getLogger(__name__)
@@ -22,12 +24,11 @@ __all__ = ('Botocore',)
 # http://www.tornadoweb.org/en/stable/httpclient.html#request-objects
 AsyncHTTPClient.configure("tornado.curl_httpclient.CurlAsyncHTTPClient")
 
-
 class Botocore(object):
 
     def __init__(self, service, operation, region_name, endpoint_url=None, session=None):
         # set credentials manually
-        session = session or botocore.session.get_session()
+        session = session or botocore120.session.get_session()
         # get_session accepts access_key, secret_key
         self.client = session.create_client(
             service,
@@ -112,7 +113,7 @@ class Botocore(object):
         if response_dict['status_code'] >= 300:
             response_dict['body'] = http_response.body
         elif operation_model.has_streaming_output:
-            response_dict['body'] = botocore.response.StreamingBody(
+            response_dict['body'] = botocore120.response.StreamingBody(
                 http_response.buffer,
                 response_dict['headers'].get('content-length')
             )

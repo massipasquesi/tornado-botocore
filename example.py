@@ -13,6 +13,6 @@ def on_response(response):
 if __name__ == '__main__':
     ec2 = Botocore(
         service='ec2', operation='DescribeInstances',
-        region_name='us-east-1')
+        region_name='eu-west-1')
     ec2.call(callback=on_response)
     IOLoop.instance().start()

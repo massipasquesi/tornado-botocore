@@ -39,3 +39,7 @@
 === 1.1.0 ===
 - proxy support
 - code cleaning
+
+=== 1.1.0forkmp ===
+- botocore 1.2.0 hardely embedded with name botocore120
+- no more conflicts with others apps that import botocore
